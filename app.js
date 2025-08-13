@@ -45,7 +45,7 @@ app.get("/listings/new", (req, res) => {
   res.render("listings/new.ejs");
 });
 
-hakjd
+
 
 // Show Route 
 app.get("/listings/:id", async (req, res) => {
