@@ -9,19 +9,14 @@ const listingSchema = new Schema({
   },
   description: String, 
   image: {
-    filename: String, 
-    url: {
       type: String, 
       default: 
         "https://unsplash.com/photos/a-patio-with-tables-and-chairs-tgp5RtxfHIQ",
-    
       set: (v) => 
         v === ""
           ?"https://unsplash.com/photos/a-patio-with-tables-and-chairs-tgp5RtxfHIQ"
-          : v,
-    }
+          : v, // it is set for client
   },
-  
   price: Number, 
   location: String, 
   country: String, 
