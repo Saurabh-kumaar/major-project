@@ -1,7 +1,17 @@
 <% layout("/layouts/boilerplate") %>
-
-<body>
   <h3>Listing Details : </h3>
+
+  <div class="card">
+    <img src="<%= listing.image %>" class="card-img-top show-img" alt="listing_image">
+  <div class="card-body">
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+  </div>
+    
+  </div>
+
+
+
+
   <ul>
     <li><%= listing.title %></li>
     <li><%= listing.description %></li>
@@ -15,5 +25,3 @@
   <form action="/listings/<%=listing._id%>?_method=DELETE" method="POST">
     <button>Delete this listing</button>
   </form>
-
-</body>
