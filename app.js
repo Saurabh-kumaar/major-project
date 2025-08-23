@@ -89,6 +89,9 @@ app.get("/listings/:id/edit", wrapAsync(async (req, res) => {
 app.put(
   "/listings/:id",  
   wrapAsync(async (req, res) => {
+    if (!req.body.listings) {
+      throw new ExpressError(400, "Send valid data for listing");
+    }
   let { id } = req.params; 
   await Listing.findByIdAndUpdate(id, { ...req.body.listing }); 
   res.redirect(`/listings/${id}`); 
@@ -106,16 +109,20 @@ app.delete(
 }));
 
 
-app.all("*", (req, res, next) => {
-  next(new ExpressError(404, "Page Not Found"));
+// it is for all error-----------------------------------------------------------------------
+app.use((req, res, next) => {                       // || app.all("*", (req, res, next) => {
+    next(new ExpressError(404, "Page Not Found"))   // ||  next (new ExpressError(404, "page not found"))})
 });
+
 
 
 // middleware for error handling 
 app.use((err, req, res, next) => {
   const {statusCode = 500, message = "something went wrong"} = err;
-  res.status(statusCode).send(message);
+  res.render("error.ejs", { message }); 
+  // res.status(statusCode).send(message);
  }); 
+
 
 
 app.listen(8080, () => {
