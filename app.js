@@ -9,8 +9,7 @@ const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js"); 
 const { wrap } = require("module");
- 
-
+const { listingSchema } = require("./schema.js");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust"; 
 
@@ -42,8 +41,22 @@ app.get("/", (req, res) => {
   res.send("Hii, I am root"); 
 }); 
 
+
+const validateListing = (req, res, next) => {
+  let { error }= listingSchema.validate(req.body); 
+  if(error) {
+    let errMsg = error.details.map((el) => el.message).join(",");
+    throw new ExpressError(400, errMsg);
+  } else {
+    next(); 
+  }
+}; 
+
+
+
 // index Route 
-app.get("/listings",  wrapAsync(async (req, res) => {
+app.get(
+  "/listings",  wrapAsync(async (req, res) => {
   const allListings = await Listing.find({}); 
   res.render("listings/index.ejs", {allListings}); 
 })); 
@@ -67,10 +80,8 @@ app.get("/listings/:id", async (req, res) => {
 // Create Route 
 app.post(
   "/listings", 
-  wrapAsync(async (req, res, next) => { 
-    if(!req.body.listing) {
-      throw new ExpressError(400, "send valid data for listing")
-    }
+  validateListing,
+  wrapAsync(async (req, res, next) => {
     const newListing = new Listing(req.body.listing); 
     await newListing.save(); 
     res.redirect("/listings"); 
@@ -85,16 +96,15 @@ app.get("/listings/:id/edit", wrapAsync(async (req, res) => {
   res.render("listings/edit.ejs", { listing }); 
 })); 
 
+
 // update Route 
 app.put(
   "/listings/:id",  
+  validateListing,
   wrapAsync(async (req, res) => {
-    if (!req.body.listings) {
-      throw new ExpressError(400, "Send valid data for listing");
-    }
-  let { id } = req.params; 
-  await Listing.findByIdAndUpdate(id, { ...req.body.listing }); 
-  res.redirect(`/listings/${id}`); 
+    let { id } = req.params; 
+    await Listing.findByIdAndUpdate(id, { ...req.body.listing }); 
+    res.redirect(`/listings/${id}`); 
 })); 
 
 
@@ -119,7 +129,7 @@ app.use((req, res, next) => {                       // || app.all("*", (req, res
 // middleware for error handling 
 app.use((err, req, res, next) => {
   const {statusCode = 500, message = "something went wrong"} = err;
-  res.render("error.ejs", { message }); 
+  res.status(statusCode).render("error.ejs", { message }); 
   // res.status(statusCode).send(message);
  }); 
 
