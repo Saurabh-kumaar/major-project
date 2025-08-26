@@ -51,8 +51,7 @@ const validateListing = (req, res, next) => {
     next(); 
   }
 }; 
-adf akdfj 
-dsfg kadfjn 
+ad 
 
 // index Route 
 app.get(
