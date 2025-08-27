@@ -116,7 +116,7 @@ app.delete(
   console.log(deletedListing); 
   res.redirect("/listings"); 
 }));
-ladjf 
+ladjf aef 
 
 // it is for all error-----------------------------------------------------------------------
 app.use((req, res, next) => {                       // || app.all("*", (req, res, next) => {
