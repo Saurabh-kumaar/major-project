@@ -116,8 +116,8 @@ app.delete(
   console.log(deletedListing); 
   res.redirect("/listings"); 
 }));
-ladjf aef 
-daf 
+
+
 // it is for all error-----------------------------------------------------------------------
 app.use((req, res, next) => {                       // || app.all("*", (req, res, next) => {
     next(new ExpressError(404, "Page Not Found"))   // ||  next (new ExpressError(404, "page not found"))})
