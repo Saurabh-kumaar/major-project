@@ -117,7 +117,7 @@ app.delete(
   res.redirect("/listings"); 
 }));
 
-
+qer 
 // it is for all error-----------------------------------------------------------------------
 app.use((req, res, next) => {                       // || app.all("*", (req, res, next) => {
     next(new ExpressError(404, "Page Not Found"))   // ||  next (new ExpressError(404, "page not found"))})
