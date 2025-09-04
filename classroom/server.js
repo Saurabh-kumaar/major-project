@@ -20,11 +20,11 @@ app.get("/users/:id", (req, res) => {
 app.post("/users", (req, res) => {
   res.send("POST for users id");
 }); 
-
+sg 
 // delete -- users 
 app.delete("/users./:id", (req, res) => {
   res.send("DELETE for user id");
-})
+});
 
 app.listen(3000, () => {
   console.log("server is listening on 3000");
