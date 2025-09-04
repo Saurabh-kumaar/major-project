@@ -20,7 +20,7 @@ app.get("/users/:id", (req, res) => {
 app.post("/users", (req, res) => {
   res.send("POST for users id");
 }); 
-sg rt 
+
 // delete -- users 
 app.delete("/users./:id", (req, res) => {
   res.send("DELETE for user id");
