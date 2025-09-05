@@ -15,14 +15,7 @@ app.use("/posts", posts);
 
 app.listen(3000, () => {
   console.log("server is listening on 3000");
-});
-oijrigj 
-
-adf 
-aodlkfj 
-
-
-
+});adfk
 
 
 
