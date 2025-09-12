@@ -47,7 +47,7 @@ app.get("/", (req, res) => {
 });
  
 app.use("/users", users);
-app.use("/posts", posts); 
+app.use("/posts", posts); ad
 
 app.listen(3000, () => {
   console.log("server is listening to 3000"); 
