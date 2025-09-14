@@ -1,4 +1,3 @@
-.
 const express = require("express"); 
 const app = express(); 
 const mongoose = require("mongoose"); 
@@ -11,10 +10,12 @@ const ExpressError = require("./utils/ExpressError.js");
 // const { wrap } = require("module");
 const { listingSchema, reviewSchema } = require("./schema.js");
 const Review = require("./models/review.js");
+const session = require("express-session");
+const flash = require("connect-flash");
+
 
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/review.js");
-
  
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust"; 
 
@@ -42,14 +43,33 @@ app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
 
+const sessionOptions = {
+  secret: "mysupersecretcode",
+  resave: false, 
+  saveUninitialized: true,
+  cookie : {
+    express: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+  },
+}
+
 app.get("/", (req, res) => {
   res.send("Hii, I am root"); 
 }); 
 
- 
+
+app.use(session(sessionOptions));
+app.use(flash());  
+
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");  
+  next(); 
+});
+
 app.use("/listings", listings);
 app.use("/listings/:id/reviews", reviews);
-
 
 // it is for all error-----------------------------------------------------------------------
 app.use((req, res, next) => {                       // || app.all("*", (req, res, next) => {
