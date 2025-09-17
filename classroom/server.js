@@ -83,6 +83,7 @@ app.get("/register", (req, res) => {
     res.redirect("/helloji");
 });
 
+
 app.get("/helloji", (req, res) => {
   res.locals.messages = req.flash("success");
    res.render("page.ejs", { name: req.session.name });
