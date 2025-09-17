@@ -79,10 +79,9 @@ app.get("/register", (req, res) => {
     req.flash("success", "user  not registered ");
   } else {
     req.flash("error", "user registered successfully");
-  }a
+  }
     res.redirect("/helloji");
 });
-
 
 app.get("/helloji", (req, res) => {
   res.locals.messages = req.flash("success");
