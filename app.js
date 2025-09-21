@@ -39,8 +39,6 @@ async function main() {
   await mongoose.connect(MONGO_URL); 
 }
 
-
-
 app.set("view engine", "ejs"); 
 app.set("views", path.join(__dirname, "views")); 
 app.use(express.urlencoded({ extended: true })); // for form data
@@ -115,14 +113,8 @@ app.use((err, req, res, next) => {
  }); 
 
 
-
 app.listen(8080, () => {
   console.log("server is listening to port 8080"); 
 }); 
-
-
-
-
-
 
 
