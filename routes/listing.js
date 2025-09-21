@@ -17,7 +17,7 @@ router.get(
 router.get("/new", isLoggedIn,(req, res) => {
    res.render("listings/new.ejs");
 });
-
+adf 
 // Show & Read Route 
 router.get(
   "/:id", 
