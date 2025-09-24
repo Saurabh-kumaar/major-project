@@ -11,13 +11,8 @@ const listingSchema = new Schema({
   },
   description: String, 
   image: {
-      type: String, 
-      default: 
-        "https://unsplash.com/photos/a-patio-with-tables-and-chairs-tgp5RtxfHIQ",
-      set: (v) => 
-        v === ""
-          ?"https://unsplash.com/photos/a-patio-with-tables-and-chairs-tgp5RtxfHIQ"
-          : v, // it is set for client
+    url: String, 
+    filename: String,
   },
   price: Number, 
   location: String, 
@@ -41,9 +36,10 @@ listingSchema.post("findOneAndDelete", async (listing) => {
 });
 
 
-
 const Listing = mongoose.model("Listing", listingSchema); 
 module.exports = Listing; 
+
+
 
 
 
