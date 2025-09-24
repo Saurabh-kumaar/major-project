@@ -25,8 +25,7 @@ router.get("/new", isLoggedIn, listingController.renderNewForm );
 router.get("/:id/edit", isLoggedIn, isOwner, wrapAsync( 
   listingController.renderEditForm
 )); 
-
-
+dkf 
 router.route("/:id")
 .get( wrapAsync(listingController.showListing))
 .put( 
