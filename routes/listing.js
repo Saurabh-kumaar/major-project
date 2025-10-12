@@ -19,25 +19,28 @@ router  // index + create
     wrapAsync( listingController.createListing)
   );
 
+
 // New Route 
 router.get("/new", isLoggedIn, listingController.renderNewForm );
 
-// Edit Route 
-router.get("/:id/edit", isLoggedIn, isOwner, wrapAsync( 
-  listingController.renderEditForm
-)); 
+router
+  .route("/:id")
+  .get(wrapAsync(listingController.showListing))
+  .put( 
+    isLoggedIn,
+    isOwner,
+    upload.single("listing[image]"),   // ✅ Add this line
+    validateListing,
+    wrapAsync(listingController.updateListing)
+  )
+  .delete(isLoggedIn, isOwner, wrapAsync(listingController.destroyListing));
 
-router.route("/:id")
-.get( wrapAsync(listingController.showListing))
-.put( 
-  isLoggedIn,
-  isOwner,
-  validateListing,
-  wrapAsync( listingController.updateListing)
-)
-.delete(
-  isLoggedIn,isOwner,wrapAsync( listingController.destroyListing)
-);
+  // Edit Route 
+router.get("/:id/edit", 
+  isLoggedIn, 
+  isOwner, 
+  wrapAsync(listingController.renderEditForm)
+); 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 module.exports = router; 
 
