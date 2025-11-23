@@ -39,7 +39,7 @@ module.exports.createListing = async (req, res, next) => {
     req.flash("success", "New Listing Created!");    // for cookies
     res.redirect("/listings"); 
 }
-l
+
 module.exports.renderEditForm = async (req, res) => {
   let { id } = req.params; 
   const listing = await Listing.findById(id); 
