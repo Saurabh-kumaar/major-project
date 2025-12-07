@@ -16,7 +16,8 @@ router
 router
   .route("/login")
   .get( userController.randerLoginForm)
-  .post(saveRedirectUrl,
+  .post(
+    saveRedirectUrl,
   passport.authenticate("local", {  failureRedirect: "/login",  failureFlash: true, 
   }), 
    userController.login

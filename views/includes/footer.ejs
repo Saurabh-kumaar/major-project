@@ -1,57 +1,72 @@
+ 
+ <style>
+  .search-btn {
+    background-color: #fe424d;
+    color: #fff;
+    border-radius: 25px;
+    padding: 0 1rem 0 1rem;
+  }
+  .search-btn:hover {
+    background-color: #fe424d;
+    color: #fff;
+  } 
 
-<footer> 
+  .search-btn i {
+    display: inline;
+    margin-right: 0.5rem;
+  } 
 
-<!-- Footer -->
-<footer class="container mt-5 mb-4">
-  <div class="row row-cols-1 row-cols-md-3 g-4">
+  .search-inp {
+    border-radius: 25px; 
+    padding: 0.5rem 3rem 0.5rem 3rem; 
+    font-size: 1rem;
+  }
 
-    <div class="col">
-      <h6 class="fw-bold">Support</h6>
-      <p>Help Centre</p>
-      <p>Safety issues</p>
-      <p>AirCover</p>
-      <p>Cancellation options</p>
-      <p>Report neighbourhood concern</p>
+
+ </style>
+
+
+
+
+<!-- ------------------------------------  -->
+
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <button class="navbar-toggler" type="button" 
+    data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+       </div>
+
+       <div class="navbar-nav ms-auto">
+        <form class="d-flex" role="search">
+          <input class="form-control me-2 search-inp" type="search" placeholder="Search destinations"/>
+          <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+        </form>
+       </div>
+
+       <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new"> <b>Become a host</b></a>
+        <% if(!currUser) { %>
+        <a class="nav-link class="btn btn-outline-dark rounded-pill px-3"  href="/signup"> <b>Sign up</b>  </a>
+        <a class="nav-link" href="/login"><b>Log in</b></a>
+        <% } %> <% if(currUser) { %>
+        <a class="nav-link" href="/logout"><b>Log out</b></a>
+        <% } %>
+       </div>
     </div>
-
-    <div class="col">
-      <h6 class="fw-bold">Hosting</h6>
-      <p>Airbnb your home</p>
-      <p>Airbnb your experience</p>
-      <p>AirCover for Hosts</p>
-      <p>Hosting resources</p>
-      <p>Find a co-host</p>
-    </div>
-
-    <div class="col">
-      <h6 class="fw-bold">Airbnb</h6>
-      <p>2025 Summer Release</p>
-      <p>Newsroom</p>
-      <p>Careers</p>
-      <p>Investors</p>
-      <p>Airbnb.org emergency stays</p>
-    </div>
-
   </div>
-</footer>
+</nav>
 
 
-<hr class="mt-5">
 
-    <div class="f-info">
-        <div class="f-info-socials">
-            <i class="fa-brands fa-square-facebook"></i>
-            <i class="fa-brands fa-square-instagram"></i>
-            <i class="fa-brands fa-linkedin"></i>
 
-        </div>
-        <div class="f-info-brand">&copy: Wanderlust    Private Limited</div>
-        <div class="f-info-links">
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
-        </div>
-    </div>
-</footer>
+
 
 
 
